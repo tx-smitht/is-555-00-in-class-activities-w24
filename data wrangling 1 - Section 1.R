@@ -19,9 +19,9 @@ df %>%
 # arrange by mass
 # note: filtering on some logical excludes NAs
 df %>% 
-  filter(sex == "female",
-         height > 100) %>% 
-  select(name,height,mass,species,films) %>% 
+  filter(height > 100,
+         sex == 'female') %>% 
+  select(name, height, mass, species, films) %>% 
   filter(mass > 50) %>% 
   arrange(mass)
 
@@ -40,11 +40,17 @@ df <- df %>%
 
 # group and summarize. Pay attention to NAs
 # get a count and mean mass by species
+df %>% glimpse
+
+
 df %>% 
   group_by(species) %>% 
   summarize(species_count = n(),
-            avg_mass = mean(mass, na.rm = T)) 
- # arrange(desc(species_count))
+            avg_mass = mean(mass, na.rm = TRUE)) 
+
+df %>% 
+  filter(species == 'Droid')
+
 
 # Lots of NAs for average... why? Even for large groups it's NA...
 
