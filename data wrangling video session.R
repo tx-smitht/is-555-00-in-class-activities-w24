@@ -69,6 +69,12 @@ flights2 <- df_flights %>%
 flights2 %>% 
   left_join(df_airlines, by = join_by(carrier))
 
+# Number of flights by tail num (join unnecessary)
+flights2 %>% 
+  left_join(df_planes, by= join_by(tailnum)) %>% 
+  group_by(tailnum) %>% 
+  summarise(flight_count =n())
+
 flights2 %>% 
   left_join(df_airlines)
 
